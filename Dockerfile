@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y update  && DEBIAN_FRONTEND=noninteractive apt-get -y install wget openjdk-11-jre-headless && apt-get clean
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y update  && DEBIAN_FRONTEND=noninteractive apt-get -y install libapr1 wget openjdk-11-jre-headless && apt-get clean
 RUN useradd -m -s /bin/bash tomcat
 RUN mkdir -p /tomcat && chown tomcat /tomcat 
 RUN cd /tomcat && wget https://apache.uib.no/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz && tar xzf apache-tomcat-9.0.48.tar.gz && rm -f apache-tomcat-9.0.48.tar.gz
