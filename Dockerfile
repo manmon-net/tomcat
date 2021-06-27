@@ -6,9 +6,9 @@ ARG tomcat_ver=`lynx "-dump" https://apache.uib.no/tomcat/tomcat-9/|grep "apache
 
 RUN useradd -m -s /bin/bash tomcat
 RUN mkdir -p /tomcat && chown tomcat /tomcat 
-RUN cd /tomcat && wget https://apache.uib.no/tomcat/tomcat-9/v$tomcat_ver/bin/apache-tomcat-$tomcat_ver.tar.gz && tar xzf apache-tomcat-$tomcat_ver.tar.gz && rm -f apache-tomcat-$tomcat_ver.tar.gz
+RUN cd /tomcat && wget https://apache.uib.no/tomcat/tomcat-9/v${tomcat_ver}/bin/apache-tomcat-${tomcat_ver}.tar.gz && tar xzf apache-tomcat-${tomcat_ver}.tar.gz && rm -f apache-tomcat-${tomcat_ver}.tar.gz
 
-RUN ln -s /tomcat/apache-tomcat-$tomcat_ver/ /tomcat/tomcat
+RUN ln -s /tomcat/apache-tomcat-${tomcat_ver}/ /tomcat/tomcat
 RUN cd /tomcat/tomcat && chgrp -R tomcat bin conf lib && chown -R tomcat logs temp webapps work &&  chmod -R g+rx conf
 RUN chown -R tomcat /tomcat/tomcat/conf/
 
