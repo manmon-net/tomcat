@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y update  && DEBIAN_FRONTEND=noninteractive apt-get -y install libapr1 wget lynx openjdk-11-jre-headless && apt-get clean
 
-ARG tomcat_ver=$(lynx "-dump" https://apache.uib.no/tomcat/tomcat-9/|grep "apache.uib.no/tomcat/tomcat-9/v9" | sed 's/.*tomcat-9\/v9/9/' | sed 's/\/$//' | sort -n -k 1,1 -k 2,2 -k 3,3 -t . |tail -1)
+ARG tomcat_ver=`lynx "-dump" https://apache.uib.no/tomcat/tomcat-9/|grep "apache.uib.no/tomcat/tomcat-9/v9" | sed 's/.*tomcat-9\/v9/9/' | sed 's/\/$//' | sort -n -k 1,1 -k 2,2 -k 3,3 -t . |tail -1`
 
 RUN useradd -m -s /bin/bash tomcat
 RUN mkdir -p /tomcat && chown tomcat /tomcat 
